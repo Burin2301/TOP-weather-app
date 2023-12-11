@@ -4,7 +4,7 @@ async function getApiInfo(city, method) {
   const cityName = city;
   const apiMethod = method;
   const forecastDays = 3;
-  const apiInfo = await fetch(`${baseUrl}${apiMethod}?key=${apiKey}&q=${cityName}&days=${forecastDays}`);
+  const apiInfo = await fetch(`${baseUrl}${apiMethod}?key=${apiKey}&q=${cityName}&days=${forecastDays},{mode: 'cors'}`);
   const response = await apiInfo.json();
   return response;
 }
