@@ -11,6 +11,7 @@
     --falu-red: hsla(1, 66%, 27%, 1);
     --sandy-brown: hsla(30, 95%, 62%, 1);
     --indigo-dye: hsla(216, 39%, 28%, 1);
+    --indigo-dye-lighter: hsl(216, 27%, 49%);
     --dartmouth-green: hsla(161, 82%, 24%, 1);
     --platinum: hsla(240, 3%, 88%, 1);
     --platinum-darker: hsl(240, 4%, 73%);
@@ -23,6 +24,9 @@ body{
 main{
     display: grid;
     place-content: center;
+    height: 100vh;
+    width: 100%;
+    background:linear-gradient(var(--platinum), var(--indigo-dye-lighter));
 }
 a{
     text-decoration: none;
@@ -36,7 +40,7 @@ ul{
 .mobile-menu{
     position: absolute;
     top: 0;
-    display: none;
+    display: flex;
     flex-direction: column;
     width: 260px;
     height: 100vh;
@@ -171,12 +175,47 @@ header h1{
 }
 
 
+/* TEMPERATURE TAB   */
+
+.temperature{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+
+    padding: 3rem;
+}
+.temp-show{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 200px;
+    height: 200px;
+    background-color: var(--platinum);
+    color:  var(--falu-red);
+
+}
+.temp-span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.inactive{
+    display: none;
+}
+.flex{
+    display: flex;
+}
+
+
 /* MEDIA QUERY */
 
 @media(max-width: 768px){
-    .mobile-menu{
-        /* display: flex; */
-    }
     .desktop-menu-options{
         display: none;
     }

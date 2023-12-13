@@ -1,4 +1,4 @@
-import { searchCity } from './apiFunctions';
+import { currentWeather, searchCity } from './apiFunctions';
 
 async function searchAndAutoComplete() {
   const resultBox = document.querySelector('.search-results');
@@ -19,8 +19,12 @@ async function searchAndAutoComplete() {
   });
 
   function displayCityOptions(cityArray) {
-    const content = cityArray.map((city) => `<li class="${city.name.replace(/\s+/g, '')}-${city.country.replace(/\s+/g, '')}">${city.name} - ${city.region}, ${city.country}</li>`);
-    resultBox.innerHTML = `<ul>${content.join('')}</ul>`;
+    try {
+      const content = cityArray.map((city) => `<li class="${city.name.replace(/\s+/g, '')}-${city.country.replace(/\s+/g, '')}">${city.name} - ${city.region}, ${city.country}</li>`);
+      resultBox.innerHTML = `<ul>${content.join('')}</ul>`;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async function searchCityOptions() {
@@ -32,7 +36,11 @@ async function searchAndAutoComplete() {
     }
   }
 
-  submitBtn.addEventListener('click', searchCityOptions);
+  inputBox.onkeyup = searchCityOptions;
+
+  submitBtn.addEventListener('click', () => {
+    currentWeather(inputBox.value);
+  });
 }
 
 export { searchAndAutoComplete };

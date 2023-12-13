@@ -1,11 +1,11 @@
 import {
 //   getApiInfo,
-  searchCity,
 //   marineWeather,
 //   showForeCast,
 //   showHistory,
 } from './apiFunctions';
 import { searchAndAutoComplete } from './autocomplete';
+import { OpenMobileMenu } from './UI/UI_functions';
 
 import {
   header,
@@ -25,5 +25,6 @@ function renderScreen() {
 
 document.addEventListener('DOMContentLoaded', () => {
   renderScreen();
+  OpenMobileMenu();
   searchAndAutoComplete();
 });

@@ -9,38 +9,44 @@ async function getApiInfo(city, method) {
   return response;
 }
 
-function createTime() {
-  const newDate = new Date();
-  const month = newDate.getMonth() + 1;
-  const day = newDate.getDate();
-  const year = newDate.getFullYear();
-  const formattedDate = `${year}-${month}-${day}`;
-  console.log(formattedDate);
-}
+// function createTime() {
+//   const newDate = new Date();
+//   const month = newDate.getMonth() + 1;
+//   const day = newDate.getDate();
+//   const year = newDate.getFullYear();
+//   // const formattedDate = `${year}-${month}-${day}`;
+//   // console.log(formattedDate);
+// }
 
 async function searchCity(city) {
   const apiMethod = '/search.json';
   const response = await getApiInfo(city, apiMethod);
-  createTime();
+  // createTime();
   return response;
 }
 
-async function marineWeather(city) {
+async function currentWeather(city) {
   const apiMethod = '/current.json';
+  const response = await getApiInfo(city, apiMethod);
+  console.log(response);
+}
+
+async function marineWeather(city) {
+  const apiMethod = '/marinet.json';
   const response = await getApiInfo(city, apiMethod);
   console.log(response);
 }
 
 async function showForeCast(city) {
   const apiMethod = '/forecast.json';
-  const restrictDate = 'value';
+  // const restrictDate = 'value';
   const response = await getApiInfo(city, apiMethod);
   console.log(response);
 }
 
 async function showHistory(city) {
   const apiMethod = '/history.json';
-  const restrictDate = 'value';
+  // const restrictDate = 'value';
   const response = await getApiInfo(city, apiMethod);
   console.log(response);
 }
@@ -51,4 +57,5 @@ export {
   marineWeather,
   showForeCast,
   showHistory,
+  currentWeather,
 };

@@ -30,5 +30,6 @@ module.exports = {
     indent: ['error', 2],
     // we want to avoid extraneous spaces
     'no-multi-spaces': ['error'],
+    'import/prefer-default-export': 0,
   },
 };

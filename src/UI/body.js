@@ -5,6 +5,7 @@ import burgerBtn from '../icons/main-menu.png';
 
 const mobileMenu = document.createElement('div');
 mobileMenu.classList.add('mobile-menu');
+mobileMenu.classList.add('inactive');
 
 const mobileMenuContent = `
 <h1 class="mobile-menu-h1">Weather App☀🌧</h1>
@@ -63,6 +64,24 @@ searchBox.appendChild(searchboxInput);
 searchBox.appendChild(searchBtn);
 searchComponent.appendChild(searchResults);
 mainBody.appendChild(searchComponent);
+
+// TEMPERATURE SECTION
+
+const tempSection = document.createElement('section');
+tempSection.classList.add('temperature');
+
+const tempSectionContent = `
+<h3>CITY</h3>
+<div class="temp-show">
+    <span class="temp-span"> 38c </span>
+    <img src="#" alt="">🌧
+    <span>text describe clima</span>    
+</div>
+`;
+
+tempSection.innerHTML = tempSectionContent;
+
+mainBody.appendChild(tempSection);
 
 export {
   mobileMenu,
