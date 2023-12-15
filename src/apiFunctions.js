@@ -1,3 +1,5 @@
+import { renderTemperature } from './UI/body';
+
 async function getApiInfo(city, method) {
   const apiKey = '62c43848c224459dbea190601230912';
   const baseUrl = 'http://api.weatherapi.com/v1';
@@ -18,6 +20,27 @@ async function getApiInfo(city, method) {
 //   // console.log(formattedDate);
 // }
 
+function showTemperature(response) {
+  const tempObject = {
+    city: response.location.name,
+    region: response.location.region,
+    country: response.location.country,
+    temperatureF: response.current.temp_f,
+    temperatureC: response.current.temp_c,
+    feelsLikeF: response.current.feelslike_f,
+    feelsLikeC: response.current.feelslike_c,
+    latitud: response.location.lat,
+    longitude: response.location.lon,
+    humidity: response.current.humidity,
+    windKph: response.current.wind_kph,
+    windMph: response.current.wind_mph,
+    conditionText: response.current.condition.text,
+    conditionIcon: response.current.condition.icon,
+  };
+  renderTemperature(tempObject);
+  return tempObject;
+}
+
 async function searchCity(city) {
   const apiMethod = '/search.json';
   const response = await getApiInfo(city, apiMethod);
@@ -28,27 +51,29 @@ async function searchCity(city) {
 async function currentWeather(city) {
   const apiMethod = '/current.json';
   const response = await getApiInfo(city, apiMethod);
-  console.log(response);
+  showTemperature(response);
 }
+
+//---------------------------------------------------------------------------------------------
 
 async function marineWeather(city) {
   const apiMethod = '/marinet.json';
   const response = await getApiInfo(city, apiMethod);
-  console.log(response);
+  return (response);
 }
 
 async function showForeCast(city) {
   const apiMethod = '/forecast.json';
   // const restrictDate = 'value';
   const response = await getApiInfo(city, apiMethod);
-  console.log(response);
+  return (response);
 }
 
 async function showHistory(city) {
   const apiMethod = '/history.json';
   // const restrictDate = 'value';
   const response = await getApiInfo(city, apiMethod);
-  console.log(response);
+  return (response);
 }
 
 export {

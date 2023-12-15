@@ -23,16 +23,20 @@ async function searchAndAutoComplete() {
       const content = cityArray.map((city) => `<li class="${city.name.replace(/\s+/g, '')}-${city.country.replace(/\s+/g, '')}">${city.name} - ${city.region}, ${city.country}</li>`);
       resultBox.innerHTML = `<ul>${content.join('')}</ul>`;
     } catch (error) {
-      console.error(error);
+      const showTemp = document.querySelector('.temp-show');
+      showTemp.innerHTML = ' ';
     }
   }
 
   async function searchCityOptions() {
-    const inputValue = inputBox.value;
-    const cityArray = await searchCity(inputValue);
-    displayCityOptions(cityArray);
-    if (!inputValue.length) {
-      resultBox.innerHTML = '';
+    try {
+      const inputValue = inputBox.value;
+      const cityArray = await searchCity(inputValue);
+      displayCityOptions(cityArray);
+      if (!inputValue.length) {
+        resultBox.innerHTML = '';
+      }
+    } catch (error) {
     }
   }
 

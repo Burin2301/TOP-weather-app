@@ -5,16 +5,17 @@ import burgerBtn from '../icons/main-menu.png';
 
 const mobileMenu = document.createElement('div');
 mobileMenu.classList.add('mobile-menu');
+mobileMenu.setAttribute('data-mobile', 'true');
 mobileMenu.classList.add('inactive');
 
 const mobileMenuContent = `
-<h1 class="mobile-menu-h1">Weather App☀🌧</h1>
-<h2 class="mobile-menu-user-greeting">Hi! <a href=""><span class="span-user-name">User</s</h2>
-<ul class="mobile-menu-options">
-    <li>Temperature</li>
-    <li>Forecast</li>
-    <li>Marine Weather</li>
-    <li>Historical Weather</li>
+<h1 class="mobile-menu-h1" data-mobile="true">Weather App☀🌧</h1>
+<h2 class="mobile-menu-user-greeting" data-mobile="true">Hi! <a href=""><span class="span-user-name">User</s</h2>
+<ul class="mobile-menu-options" data-mobile="true">
+    <li data-mobile="true">Temperature</li>
+    <li data-mobile="true">Forecast</li>
+    <li data-mobile="true">Marine Weather</li>
+    <li data-mobile="true">Historical Weather</li>
 </ul>
 `;
 mobileMenu.innerHTML = mobileMenuContent;
@@ -67,24 +68,40 @@ mainBody.appendChild(searchComponent);
 
 // TEMPERATURE SECTION
 
-const tempSection = document.createElement('section');
-tempSection.classList.add('temperature');
+export function renderTemperature(tempObject) {
+  const oldTempSections = document.querySelectorAll('.temperature');
+  oldTempSections.forEach((section) => {
+    section.remove();
+  });
+  const tempSection = document.createElement('section');
+  tempSection.classList.add('temperature');
 
-const tempSectionContent = `
-<h3>CITY</h3>
-<div class="temp-show">
-    <span class="temp-span"> 38c </span>
-    <img src="#" alt="">🌧
-    <span>text describe clima</span>    
-</div>
-`;
+  const weatherIconFull = tempObject.conditionIcon;
+  const weatherIcon = weatherIconFull.slice(35);
 
-tempSection.innerHTML = tempSectionContent;
-
-mainBody.appendChild(tempSection);
+  const tempSectionContent = `
+    <h3  class="temp-h3">${tempObject.city}<br>${tempObject.country}</h3>
+    <div class="temp-show">
+        <div class="temperature-div">
+            <span class="temp-span">${tempObject.temperatureC}</span>
+            <span class="c-temp">°C</span>
+        </div>
+        <img src="./dest/weather/64x64/${weatherIcon}" alt="" class="temp-image">
+        <div class="temp-detail-div">
+            <span class="temp-detail">${tempObject.conditionText}</span>
+            <span class="temp-detail">Humidity: ${tempObject.humidity}%</span>
+            <span class="temp-detail">Wind: ${tempObject.windKph} km/h</span>
+        </div>
+    </div>
+    `;
+  tempSection.innerHTML = tempSectionContent;
+  mainBody.appendChild(tempSection);
+}
 
 export {
   mobileMenu,
   header,
   mainBody,
 };
+
+// cdn.weatherapi.com/weather/64x64/night/116.png
