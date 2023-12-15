@@ -87,8 +87,8 @@ export function renderTemperature(tempObject) {
             <span class="c-temp">°C</span>
         </div>
         <img src="./dest/weather/64x64/${weatherIcon}" alt="" class="temp-image">
+        <span class="temp-status">${tempObject.conditionText}</span>
         <div class="temp-detail-div">
-            <span class="temp-detail">${tempObject.conditionText}</span>
             <span class="temp-detail">Humidity: ${tempObject.humidity}%</span>
             <span class="temp-detail">Wind: ${tempObject.windKph} km/h</span>
         </div>

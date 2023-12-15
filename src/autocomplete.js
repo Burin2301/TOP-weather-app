@@ -21,7 +21,7 @@ async function searchAndAutoComplete() {
   function displayCityOptions(cityArray) {
     try {
       const content = cityArray.map((city) => `<li class="${city.name.replace(/\s+/g, '')}-${city.country.replace(/\s+/g, '')}">${city.name} - ${city.region}, ${city.country}</li>`);
-      resultBox.innerHTML = `<ul>${content.join('')}</ul>`;
+      resultBox.innerHTML = `<ul class="result-box">${content.join('')}</ul>`;
     } catch (error) {
       const showTemp = document.querySelector('.temp-show');
       showTemp.innerHTML = ' ';
@@ -37,6 +37,7 @@ async function searchAndAutoComplete() {
         resultBox.innerHTML = '';
       }
     } catch (error) {
+      console.error(error);
     }
   }
 
@@ -44,6 +45,7 @@ async function searchAndAutoComplete() {
 
   submitBtn.addEventListener('click', () => {
     currentWeather(inputBox.value);
+    resultBox.classList.add('inactive');
   });
 }
 
